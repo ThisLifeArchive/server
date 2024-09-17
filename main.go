@@ -7,10 +7,12 @@ import (
 	"github.com/ThisLifeArchive/server/episodes"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 func main() {
 	app := fiber.New()
+	app.Use(logger.New())
 	app.Get("/episodes", func(c *fiber.Ctx) error {
 		eps, err := episodes.List()
 		if err != nil {
